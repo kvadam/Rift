@@ -1,25 +1,29 @@
+// Starting ship
+sprite_index = Assaultship;
 // Structure
-hull = 1;
-armor = 0;
-shield = 0;
+hullLevel = 1
+hullMax = objData.GetHullByLevel(hullLevel)
+hull = hullMax;
+armorLevel = 1
+armorMax = objData.GetArmorByLevel(armorLevel);
+armor = armorMax;
+shieldLevel = 1;
+shieldMax = objData.GetShieldByLevel(shieldLevel);
+shield = shieldMax;
 // Movement
-mainTorue = 0;
-sideTorque = 0;
-brakeTorque = 0;
-rotationSpeed = 0;
-
-function SetShip() {
-	sprite_index = player_ship.sprite;
-	hull = player_ship.hull;
-	armor = player_ship.armor;
-	shield = player_ship.shield;
-	mainTorue = player_ship.mainTorue;
-	sideTorque = player_ship.sideTorque;
-	brakeTorque = player_ship.brakeTorque;
-	rotationSpeed = player_ship.rotationSpeed;
-}
-
-player_ship = new Ship();
-player_ship.GetDefaultShip();
-SetShip();
-
+engineLevel = 1;
+engine = objData.GetEngineByLevel(engineLevel);
+mainTorue = engine[0];
+sideTorque = engine[1];
+brakeTorque = engine[2];
+rotationSpeed = engine[3];
+// Weapons
+weaponSlots = objData.GetWeaponSlots();
+weaponList = ds_list_create();
+objData.AddDefaultWeapons();
+weaponCurrent = 1;
+firerate = objData.GetFirerate(ds_list_find_value(weaponList, weaponCurrent-1));
+bulletSprite = asset_get_index(objData.GetBulletObject(ds_list_find_value(weaponList, weaponCurrent-1)));;
+fireInterval = 0;
+//Mining
+hasMiningLaser = false;
