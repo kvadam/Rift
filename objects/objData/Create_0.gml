@@ -8,6 +8,14 @@ mainTorue = 0.03;
 sideTorque = 0.02;
 brakeTorque = 0.02;
 rotationSpeed = 2;
+// Flight modes
+flight_modes = {
+	travel: 3,
+	fight: 1,
+	mining: 0.5,
+	docking: 0.25
+}
+
 // Weapons
 mg = {
     name : "Machinegun",
@@ -29,8 +37,6 @@ rl = {
 };
 
 weaponSlots = 3;
-emptySlotId = 0;
-machinegunId = 1;
 
 //Mining
 hasMiningLaser = false;
@@ -71,8 +77,8 @@ function GetWeaponSlots() {
 function AddDefaultWeapons() {
 	list = ds_list_create();
 	ds_list_add(list, 1);
-	ds_list_add(list, 0);
-	ds_list_add(list, 0);
+	ds_list_add(list, 2);
+	ds_list_add(list, 3);
 	ds_list_copy(objPlayer.weaponList, list);
 }
 
@@ -105,6 +111,24 @@ function GetWepon(i) {
 			objPlayer.firerate = objData.rl.firerate;
 			objPlayer.damage = objData.rl.damage;
 			objPlayer.bulletObject = asset_get_index(objData.rl.object);
+			break;
+	}
+}
+
+// Flight modes
+function nextFlightMode(fm) {
+	switch(fm) {
+		case flight_modes.travel:
+			objPlayer.flightMode = flight_modes.fight;
+			break;
+		case flight_modes.fight:
+			objPlayer.flightMode = flight_modes.mining;
+			break;
+		case flight_modes.mining:
+			objPlayer.flightMode = flight_modes.docking;
+			break;
+		case flight_modes.docking:
+			objPlayer.flightMode = flight_modes.travel;
 			break;
 	}
 }

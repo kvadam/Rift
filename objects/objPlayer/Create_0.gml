@@ -11,6 +11,7 @@ shieldLevel = 1;
 shieldMax = objData.GetShieldByLevel(shieldLevel);
 shield = shieldMax;
 // Movement
+flightMode = objData.flight_modes.docking;
 engineLevel = 1;
 engine = objData.GetEngineByLevel(engineLevel);
 mainTorue = engine[0];
