@@ -25,24 +25,23 @@ if keyboard_check(ord("D")) {
 }
 
 // Weapons
-if  keyboard_check(ord("1")) { 
-	weaponCurrent = ds_list_find_value(weaponList, 1);
-	firerate = objData.GetFirerate(ds_list_find_value(weaponList, weaponCurrent));
-	bulletSprite = asset_get_index(objData.GetBulletObject(ds_list_find_value(weaponList, weaponCurrent)));
+if  keyboard_check(ord("1")) {
+	objData.GetWepon(1);
 }
 
-if  keyboard_check(ord("2")) { 
-	weaponCurrent = ds_list_find_value(weaponList, 2);
-	firerate = objData.GetFirerate(ds_list_find_value(weaponList, weaponCurrent));
-	bulletSprite = asset_get_index(objData.GetBulletObject(ds_list_find_value(weaponList, weaponCurrent)));
+if  keyboard_check(ord("2")) {
+	objData.GetWepon(2);
 }
 
-if  keyboard_check(ord("3")) { 
-	weaponCurrent = ds_list_find_value(weaponList, 3);
-	firerate = objData.GetFirerate(ds_list_find_value(weaponList, weaponCurrent));
-	bulletSprite = asset_get_index(objData.GetBulletObject(ds_list_find_value(weaponList, weaponCurrent)));
+if  keyboard_check(ord("3")) {
+	objData.GetWepon(3);
 }
+
+if(fireInterval > 0) fireInterval -= 1;
 
 if mouse_check_button(mb_left) {
-	instance_create_layer(x, y, "Instances", objBullet);
+	if fireInterval < 1 {
+		instance_create_layer(x, y, "Instances", objPlayer.bulletObject);
+		fireInterval = firerate;
+	}
 }

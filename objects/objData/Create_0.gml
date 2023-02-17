@@ -9,26 +9,28 @@ sideTorque = 0.02;
 brakeTorque = 0.02;
 rotationSpeed = 2;
 // Weapons
+mg = {
+    name : "Machinegun",
+    firerate : 1,
+	damage: 1,
+	object: "objBullet"
+};
+gl = {
+    name : "Grenadelauncher",
+    firerate : 10,
+	damage: 10,
+	object: "objGrenade"
+};
+rl = {
+    name : "Rocketlauncher",
+    firerate : 60,
+	damage: 100,
+	object: "objRocket"
+};
+
 weaponSlots = 3;
 emptySlotId = 0;
 machinegunId = 1;
-mg = ds_list_create();
-ds_list_add(mg, "Machinegun"); // name
-ds_list_add(mg, 1); // firerate (shots per number of frames)
-ds_list_add(mg, 1); // damage
-ds_list_add(mg, "objBullet")
-granadeId = 2;
-gl = ds_list_create();
-ds_list_add(gl, "Grenadelauncher"); // name
-ds_list_add(gl, 10); // firerate
-ds_list_add(gl, 10); // damage
-ds_list_add(gl, "objGrenade")
-rocketId = 3;
-rl = ds_list_create();
-ds_list_add(rl, "Rocketlauncher"); // name
-ds_list_add(rl, 60); // firerate
-ds_list_add(rl, 100); // damage
-ds_list_add(rl, "objRocket")
 
 //Mining
 hasMiningLaser = false;
@@ -74,32 +76,26 @@ function AddDefaultWeapons() {
 	ds_list_copy(objPlayer.weaponList, list);
 }
 
-function GetFirerate(i) {
+function GetWepon(i) {
 	switch(i)
 	{	
 		case 1:
-			return ds_list_find_value(mg, 1);
+			objPlayer.weaponName = mg.name;
+			objPlayer.firerate = objData.mg.firerate;
+			objPlayer.damage = objData.mg.damage;
+			objPlayer.bulletObject = asset_get_index(objData.mg.object);
 			break;
 		case 2:
-			return ds_list_find_value(gl, 1);
+			objPlayer.weaponName = gl.name;
+			objPlayer.firerate = objData.gl.firerate;
+			objPlayer.damage = objData.gl.damage;
+			objPlayer.bulletObject = asset_get_index(objData.gl.object);
 			break;
 		case 3:
-			return ds_list_find_value(rl, 1);
-			break;
-	}
-}
-
-function GetBulletObject(i) {
-	switch(i)
-	{	
-		case 1:
-			return ds_list_find_value(mg, 3);
-			break;
-		case 2:
-			return ds_list_find_value(gl, 3);
-			break;
-		case 3:
-			return ds_list_find_value(rl, 3);
+			objPlayer.weaponName = rl.name;
+			objPlayer.firerate = objData.rl.firerate;
+			objPlayer.damage = objData.rl.damage;
+			objPlayer.bulletObject = asset_get_index(objData.rl.object);
 			break;
 	}
 }

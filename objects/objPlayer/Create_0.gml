@@ -22,8 +22,10 @@ weaponSlots = objData.GetWeaponSlots();
 weaponList = ds_list_create();
 objData.AddDefaultWeapons();
 weaponCurrent = 1;
-firerate = objData.GetFirerate(ds_list_find_value(weaponList, weaponCurrent-1));
-bulletSprite = asset_get_index(objData.GetBulletObject(ds_list_find_value(weaponList, weaponCurrent-1)));;
+weaponName = objData.mg.name;
+firerate = objData.mg.firerate;
+damage = objData.mg.damage;
+bulletObject = asset_get_index(objData.mg.object);
 fireInterval = 0;
 //Mining
 hasMiningLaser = false;
