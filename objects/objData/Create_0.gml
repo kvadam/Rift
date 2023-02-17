@@ -71,14 +71,23 @@ function GetWeaponSlots() {
 function AddDefaultWeapons() {
 	list = ds_list_create();
 	ds_list_add(list, 1);
-	ds_list_add(list, 2);
-	ds_list_add(list, 3);
+	ds_list_add(list, 0);
+	ds_list_add(list, 0);
 	ds_list_copy(objPlayer.weaponList, list);
 }
 
 function GetWepon(i) {
-	switch(i)
+	objPlayer.weaponSlotCurrent = i;
+	var weapon = ds_list_find_value(objPlayer.weaponList, i-1);
+	objPlayer.weaponCurrent = weapon;
+	switch(weapon)
 	{	
+		case 0: 
+			objPlayer.weaponName = "";
+			objPlayer.firerate = 0;
+			objPlayer.damage = 0;
+			objPlayer.bulletObject = "";
+			break;
 		case 1:
 			objPlayer.weaponName = mg.name;
 			objPlayer.firerate = objData.mg.firerate;

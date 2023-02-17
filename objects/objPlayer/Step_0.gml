@@ -37,10 +37,10 @@ if  keyboard_check(ord("3")) {
 	objData.GetWepon(3);
 }
 
+// Shooting
 if(fireInterval > 0) fireInterval -= 1;
-
 if mouse_check_button(mb_left) {
-	if fireInterval < 1 {
+	if fireInterval < 1 && weaponCurrent > 0 {
 		instance_create_layer(x, y, "Instances", objPlayer.bulletObject);
 		fireInterval = firerate;
 	}

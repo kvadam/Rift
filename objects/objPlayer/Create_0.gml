@@ -21,11 +21,13 @@ rotationSpeed = engine[3];
 weaponSlots = objData.GetWeaponSlots();
 weaponList = ds_list_create();
 objData.AddDefaultWeapons();
+weaponSlotCurrent = 1;
 weaponCurrent = 1;
 weaponName = objData.mg.name;
 firerate = objData.mg.firerate;
 damage = objData.mg.damage;
 bulletObject = asset_get_index(objData.mg.object);
+// Shooting
 fireInterval = 0;
-//Mining
+// Mining
 hasMiningLaser = false;
