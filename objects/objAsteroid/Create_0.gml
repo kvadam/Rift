@@ -7,3 +7,7 @@ function Hit(damage) {
 	sp -= damage;
 	if sp <= 0 instance_destroy();
 }
+
+function Knockback(_dir, _speed) {
+	motion_add(_dir, _speed)	
+}

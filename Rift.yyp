@@ -3,6 +3,7 @@
   "resourceVersion": "1.6",
   "name": "Rift",
   "resources": [
+    {"id":{"name":"objSpawner","path":"objects/objSpawner/objSpawner.yy",},"order":8,},
     {"id":{"name":"objGame","path":"objects/objGame/objGame.yy",},"order":0,},
     {"id":{"name":"objPlayer","path":"objects/objPlayer/objPlayer.yy",},"order":2,},
     {"id":{"name":"Asteroid","path":"sprites/Asteroid/Asteroid.yy",},"order":4,},
