@@ -71,7 +71,7 @@ function GetEngineByLevel(level) {
 
 // Weapons
 function GetWeaponSlots() {
-	objPlayer.weaponSlots = weaponSlots;
+	return weaponSlots;
 }
 
 function AddDefaultWeapons() {
@@ -83,8 +83,10 @@ function AddDefaultWeapons() {
 }
 
 function GetWepon(i) {
-	objPlayer.weaponSlotCurrent = i;
-	var weapon = ds_list_find_value(objPlayer.weaponList, i-1);
+	objPlayer.weaponSlotCurrent += i;
+	if objPlayer.weaponSlotCurrent > objPlayer.weaponSlots objPlayer.weaponSlotCurrent = 1;
+	else if objPlayer.weaponSlotCurrent < 1 objPlayer.weaponSlotCurrent = objPlayer.weaponSlots;
+	var weapon = ds_list_find_value(objPlayer.weaponList, objPlayer.weaponSlotCurrent-1);
 	objPlayer.weaponCurrent = weapon;
 	switch(weapon)
 	{	

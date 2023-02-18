@@ -31,17 +31,8 @@ if keyboard_check_pressed(vk_shift) {
 if flightMode == objData.flight_modes.travel return;
 
 // Weapons
-if  keyboard_check(ord("1")) {
-	objData.GetWepon(1);
-}
-
-if  keyboard_check(ord("2")) {
-	objData.GetWepon(2);
-}
-
-if  keyboard_check(ord("3")) {
-	objData.GetWepon(3);
-}
+if mouse_wheel_down() objData.GetWepon(1);
+if mouse_wheel_up() objData.GetWepon(-1);
 
 // Shooting
 if(fireInterval > 0) fireInterval -= 1;
