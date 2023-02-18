@@ -117,24 +117,6 @@ function GetWepon(i) {
 	}
 }
 
-// Flight modes
-function nextFlightMode(fm) {
-	switch(fm) {
-		case flight_modes.travel:
-			objPlayer.flightMode = flight_modes.fight;
-			break;
-		case flight_modes.fight:
-			objPlayer.flightMode = flight_modes.mining;
-			break;
-		case flight_modes.mining:
-			objPlayer.flightMode = flight_modes.docking;
-			break;
-		case flight_modes.docking:
-			objPlayer.flightMode = flight_modes.travel;
-			break;
-	}
-}
-
 // Level up modules
 function LevelUpHull() {
 	objPlayer.hullLevel += 1

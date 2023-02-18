@@ -17,16 +17,17 @@ if keyboard_check(ord("E")) {
 }
 
 if keyboard_check(ord("A")) {
-	image_angle += rotationSpeed * flightMode;	
+	image_angle += clamp(rotationSpeed * flightMode, 0, rotationSpeed);	
 }
 
 if keyboard_check(ord("D")) {
-	image_angle -= rotationSpeed * flightMode;
+	image_angle -= clamp(rotationSpeed * flightMode, 0, rotationSpeed);	
 }
 
-if keyboard_check_pressed(vk_shift) { 
-	objData.nextFlightMode(flightMode);
-}
+if keyboard_check_pressed(ord("1")) flightMode = objData.flight_modes.travel;
+if keyboard_check_pressed(ord("2")) flightMode = objData.flight_modes.fight;
+if keyboard_check_pressed(ord("3")) flightMode = objData.flight_modes.mining;
+if keyboard_check_pressed(ord("4")) flightMode = objData.flight_modes.docking;
 
 if flightMode == objData.flight_modes.travel return;
 
